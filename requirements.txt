@@ -1,0 +1,9 @@
+pydantic
+docx2txt
+PyPDF2
+sentence-transformers
+transformers
+faiss-cpu
+numpy
+protobuf
+tiktoken
