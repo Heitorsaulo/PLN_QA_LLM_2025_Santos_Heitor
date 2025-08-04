@@ -31,11 +31,11 @@ class RAGPipeline:
         """Divide um documento em chunks menores baseado no número de caracteres"""
         content = doc.content
         chunks = []
-        
+
         # Dividir por parágrafos primeiro (se possível)
         paragraphs = content.split('\n\n')
         current_chunk = ""
-        
+
         for paragraph in paragraphs:
             # Se o parágrafo sozinho já é muito grande, dividi-lo
             if len(paragraph) > chunk_size:
@@ -43,7 +43,7 @@ class RAGPipeline:
                 if current_chunk.strip():
                     chunks.append(current_chunk.strip())
                     current_chunk = ""
-                
+
                 # Dividir parágrafo grande em pedaços menores
                 words = paragraph.split()
                 temp_chunk = ""
@@ -53,10 +53,10 @@ class RAGPipeline:
                         temp_chunk = word
                     else:
                         temp_chunk += " " + word if temp_chunk else word
-                
+
                 if temp_chunk.strip():
                     chunks.append(temp_chunk.strip())
-            
+
             # Se adicionar este parágrafo não exceder o limite
             elif len(current_chunk + "\n\n" + paragraph) <= chunk_size:
                 current_chunk += "\n\n" + paragraph if current_chunk else paragraph
@@ -65,11 +65,11 @@ class RAGPipeline:
                 if current_chunk.strip():
                     chunks.append(current_chunk.strip())
                 current_chunk = paragraph
-        
+
         # Adicionar último chunk se não estiver vazio
         if current_chunk.strip():
             chunks.append(current_chunk.strip())
-        
+
         return chunks if chunks else [content[:chunk_size]]
 
     def query(self, question: str, top_k: int = 5) -> Answer:
@@ -77,12 +77,12 @@ class RAGPipeline:
         query_embedding = self.embedding.embed([question])[0]
         results = self.vector_store.search(query_embedding, top_k=top_k)
         retrieved = [RetrievedDocument(chunk=chunk, relevance_score=score) for chunk, score in results]
-        
+
         # Limitar o contexto para não exceder o limite do modelo
         context_parts = []
         total_length = 0
-        max_context_length = 400  # Deixar espaço para pergunta e resposta
-        
+        max_context_length = 700  # Deixar espaço para pergunta e resposta
+
         for r in retrieved:
             chunk_text = r.chunk.content
             if total_length + len(chunk_text) <= max_context_length:
@@ -94,7 +94,7 @@ class RAGPipeline:
                 if remaining > 50:  # Só adicionar se for significativo
                     context_parts.append(chunk_text[:remaining] + "...")
                 break
-        
+
         context = '\n'.join(context_parts)
         prompt = f"Context:\n{context}\n\nQuestion: {question}\nAnswer:"
         answer_text = self.llm.generate(prompt)

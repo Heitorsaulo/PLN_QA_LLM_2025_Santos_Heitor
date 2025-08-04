@@ -1,9 +1,10 @@
-pydantic
-docx2txt
-PyPDF2
-sentence-transformers
-transformers
-faiss-cpu
-numpy
+pydantic~=2.11.7
+docx2txt~=0.9
+PyPDF2~=3.0.1
+sentence-transformers~=5.0.0
+transformers~=4.54.1
+faiss-cpu~=1.11.0.post1
+numpy~=2.3.2
 protobuf
 tiktoken
+torch~=2.7.1
