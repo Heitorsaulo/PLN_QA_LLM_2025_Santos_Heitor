@@ -1,0 +1,47 @@
+Modelo: bigscience/mt0-xl
+Pergunta: Qual é a prevalência e o impacto das principais doenças respiratórias crônicas no Brasil, segundo dados do Ministério da Saúde?
+Resposta: O Caderno de Atenção Básica Doenças Respiratórias Crônicas traz protocolos clínicos para o manejo da rinite, asma e DPOC, além de um capítulo introdutório que discute d...
+
+Modelo: google/flan-t5-large
+Pergunta: Qual é a prevalência e o impacto das principais doenças respiratórias crônicas no Brasil, segundo dados do Ministério da Saúde?
+Resposta: internaçes hospitalares e aumento na qualidade de vida. Es necessário, portanto, que os profissionais das equipas da Sade da Famlia estám preparados para lidar com esses agravos, para possam oferir o melhor tratamento às pessoas que têm doença respiratória crônica.
+
+Modelo: bigscience/mt0-xl
+Pergunta: Qual é a relação entre rinite alérgica e asma segundo o conceito de “via aérea única”?
+Resposta: O tratamento para a rinite alérgica é o mesmo que o tratamento para a asma.
+
+Modelo: google/flan-t5-large
+Pergunta: Qual é a relação entre rinite alérgica e asma segundo o conceito de “via aérea única”?
+Resposta: Asma e rinite fazem parte de uma mesma doença, defendendo o conceito de “via aérea nica”, com manifestaçes clnicas mais intensas e evidentes que dependeriam do órgano “máis acometido”. As alteraçes de funço nas vias aéreas superiores poderiam levar a alteraçes nas vias aéreas inferiores e vice-versa, caracterizadas por inflamaço da mucosa que podem ser mantidas e amplificadas por mecanismos imunológicos similares e interrelacionados. Um estudo multicêntrico mostrou que cerca de 80% das pessoas com asma têm rinite alérgica e aproximadamente 15 a 30% dos p...
+
+Modelo: bigscience/mt0-xl
+Pergunta: Quais são os critérios utilizados para classificar a segurança do uso de medicamentos durante a gravidez, segundo o FDA?
+Resposta: A medicação para asma é prescrita para controlar a gravidade dos sintomas, utilizando-se a menor dose que possa controlar os sintomas.
+
+Modelo: google/flan-t5-large
+Pergunta: Quais são os critérios utilizados para classificar a segurança do uso de medicamentos durante a gravidez, segundo o FDA?
+Resposta: agravidade, utilizando-se a menor dose que possa controlar os sintomas. Após um perodo de três meses, pode-se tentar reduzir a dose da medicaço anti-inflamatória e reavaliar as condiçes clnicas e, eventualmente, espirométricas do paciente. Se o controle no forem obtidos, deve-se reavaliar a adeso à medicina prescrita, equvoco na técnica de uso dos medicamentos inalatórios, presença de fatores agravantes ou desencadeantes, tais como rinite alérgica no tratada, infecçes virais, exposiço a alérgenos, entre outros. As medicinaçes para asma podem ser classificadas em dois categorias, a ...
+
+Modelo: bigscience/mt0-xl
+Pergunta: Qual tabela contém os dados sobre os profissionais vinculados às equipes de saúde e qual o nome do campo que identifica o CPF desses profissionais?
+Resposta: Nome Fantasia IND_VINCULACAO VARCHAR(60) NULL
+
+Modelo: google/flan-t5-large
+Pergunta: Qual tabela contém os dados sobre os profissionais vinculados às equipes de saúde e qual o nome do campo que identifica o CPF desses profissionais?
+Resposta: Código Nacional de Estabelecimento de Sade TABELA DE PROFISSIONAIS COM MAIS DE 5 VINCULOS PRIVADOS (PORTARIA 134 ARTIGO 3) NFCES075 TB_CNES_MAIS_CINCO_VINC_PRIV NOME DO CAMPO TIPO FOREIGN KEY NOME DO CAMPO TIPO FOREIGN KEY PRIMARY KEY NULL
+
+Modelo: bigscience/mt0-xl
+Pergunta: Qual é o campo utilizado para indicar se um hospital possui contrato formalizado com o SUS e quais são os possíveis valores desse campo?
+Resposta: Nome do campo TIPO FOREIGN KEY PRIMARY KEY NULL DESCRIÇÃO DOMÍNIOS COD_MUN VARCHAR(6) NOT NULL Código do Município CNES VARCHAR(7) NOT NULL Código Nacional do Estabelecimento de Saúde COD_CBO VARCHAR(6) NOT NULL
+
+Modelo: google/flan-t5-large
+Pergunta: Qual é o campo utilizado para indicar se um hospital possui contrato formalizado com o SUS e quais são os possíveis valores desse campo?
+Resposta: D_AMBSUS CHAR(1) NOT NULL Indica se o Serviço Atende Ambulatorial SUS 1 - Sim 2 - Non
+
+Modelo: bigscience/mt0-xl
+Pergunta: Na tabela de leitos hospitalares (LFCES002), qual campo armazena a quantidade de leitos disponíveis para o SUS e qual o nome da tabela relacionada à unidade?
+Resposta: Banco Nacional de Informações de Saúde (BNIS)
+
+Modelo: google/flan-t5-large
+Pergunta: Na tabela de leitos hospitalares (LFCES002), qual campo armazena a quantidade de leitos disponíveis para o SUS e qual o nome da tabela relacionada à unidade?
+Resposta: Ministério da Sade Departamento de Informática do SUS – DATASUS Secretaria Executiva Cosih - Ginfs CNES RELAO DAS TABELAS PRINCIPAIS NOME DA TABELA (BANCO LOCAL) NOME DA TABELA (BANCO DE PRODUO FEDERAL) DESCRIO DA TABELA ACESSOSUSUARIO - ACESSOS DOS USURIOS FCESGEST - PERFIL DO GESTOR LF...
