@@ -7,8 +7,8 @@ import PyPDF2
 class DocumentLoader:
     @staticmethod
     def load_docx2txt(file_path: str) -> str:
-        doc = docx2txt.Document(file_path)
-        return '\n'.join([p.text for p in doc.paragraphs if p.text.strip()])
+        doc = docx2txt.process(file_path)
+        return doc
 
     @staticmethod
     def load_pdf(file_path: str) -> str:
@@ -26,7 +26,7 @@ class DocumentLoader:
             ext = Path(path).suffix.lower()
             if ext == '.pdf':
                 content = DocumentLoader.load_pdf(path)
-            elif ext == '.docx2txt':
+            elif ext == '.docx':
                 content = DocumentLoader.load_docx2txt(path)
             else:
                 continue
