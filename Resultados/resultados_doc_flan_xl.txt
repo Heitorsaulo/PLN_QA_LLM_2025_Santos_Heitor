@@ -1,0 +1,12 @@
+Modelo: google/flan-t5-xl
+Pergunta: Qual tabela contém os dados sobre os profissionais vinculados às equipes de saúde e qual o nome do campo que identifica o CPF desses profissionais?
+Resposta: Contexto> Tabela: () Campo: IND_VINC Descriço: Indica a vinculaço, o tipo e o sub tipo de vnculo do Profissional com o Estabelecimento de Sade Tipo: VARCHAR(06) / - --- Campo: TP_SUS_NAO_SUS Descriço: Indica se o Profissional faz Atendimento ao SUS Tipo: VARCHAR(01) / - Domnios: S – Sim N - No --- Campo: DESCRICAO Descriço: NOT NULL Tipo: VARCHAR(50) / - Domnios: Palavras no permitidas --- Campo: NU_CPF Descriço: NOT NULL Tipo: VARCHAR(11) / - Domnios: CPF do Profissional Tabela: () Campo: TP_SUS_NAO_SUS Descriço: Indica se o Profissional faz Atendimento ao SUS
+
+Modelo: google/flan-t5-xl
+Pergunta: Qual é o campo utilizado para indicar se um hospital possui contrato formalizado com o SUS e quais são os possíveis valores desse campo?
+Resposta: Responda a Pergunta com a conteudo do Contexto: Contexto> Tabela: () Campo: D_HOSPSUS Descriço: Indiza se o Serviço Atende Hospitalar SUS Tipo: CHAR(1) / - Domnios: 1 - Sim 2 - No --- Campo: NOME_FANTA Descriço: Nome Fantasia da Cooperativa Tipo: VARCHAR(60) / - --- Campo: COD_MUN _SEDE Descriço: Código do Municpio Tipo: VARCHAR(6) / - --- Campo: COD_MUN _CONSORCIO Descriço: Código Nacional do Estabelecimento de Sade Tipo: VARCHAR(6) / - Tabela: () Campo: CO_CNES_HOSP_GERAL_REF Descriço: CNES do Hospital Geral de Referência Tipo: VARCHAR(7) / VARCHAR(7) --- Campo: ST_UNIDADE_REG...
+
+Modelo: google/flan-t5-xl
+Pergunta: Na tabela de leitos hospitalares (LFCES002), qual campo armazena a quantidade de leitos disponíveis para o SUS e qual o nome da tabela relacionada à unidade?
+Resposta: Responda a Pergunta com a conteudo do Contexto: Contexto> Tabela: () Campo: D_HOSPSUS Descriço: Indiza se o Serviço Atende Hospitalar SUS Tipo: CHAR(1) / - Domnios: 1 - Sim 2 - No --- Campo: NOME_FANTA Descriço: Nome Fantasia da Cooperativa Tipo: VARCHAR(60) / - --- Campo: COD_MUN _SEDE Descriço: Código do Municpio Tipo: VARCHAR(6) / - --- Campo: COD_MUN _CONSORCIO Descriço: Código Nacional do Estabelecimento de Sade Tipo: VARCHAR(6) / - Tabela: () Campo: CO_CNES_HOSP_GERAL_REF Descriço: CNES do Hospital Geral de Referência Tipo: VARCHAR(7) / VARCHAR(7) --- Campo: ST_UNIDADE_REG...
+

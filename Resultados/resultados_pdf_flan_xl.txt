@@ -1,0 +1,12 @@
+Modelo: google/flan-t5-xl
+Pergunta: Qual é a prevalência e o impacto das principais doenças respiratórias crônicas no Brasil, segundo dados do Ministério da Saúde?
+Resposta: os agravos e aumento na qualidade de vida. É necessário, por isso, que os profissionais das equipes da Sade da Famlia estejam preparados para lidar com esses agravos, para que possam ofertar o melhor tratamento às pessoas que têm doença respiratória crônica. Nesse sentido, este departamento publica o Caderno de Atenção Básica Doenças Respiratórias Crônicas. Esta publicação tem como finalidade oferecer conhecimento prático para o manejo dos agravos em questo. O documento traz protocolos clnicos para o manejo da rinite...
+
+Modelo: google/flan-t5-xl
+Pergunta: Qual é a relação entre rinite alérgica e asma segundo o conceito de “via aérea única”?
+Resposta: Diversos autores têm referido que asma e rinite fazem parte de uma mesma doença, defendendo o conceito de “via aérea única”, com manifestaçes clnicas mais intensas e evidentes que dependeriam do órgo “mais acometido”. As alteraçes de funço nas vias aéreas superiores poderiam levar a alteraçes nas vias aéreas inferiores e vice- versa, caracterizadas por inflamaço da mucosa que podem ser mantidas e amplificadas por mecanismos imunológicos simil...
+
+Modelo: google/flan-t5-xl
+Pergunta: Quais são os critérios utilizados para classificar a segurança do uso de medicamentos durante a gravidez, segundo o FDA?
+Resposta: Se o controle não se obteve, deve-se reavaliar a adeso à medicaço prescrita, equvoco na técnica de uso dos medicamentos inalatórios, presença de fatores agravantes ou desencadeantes, tais como rinite alérgica no trattada, infecçes virais, exposiço a alérgenos, entre outras.
+

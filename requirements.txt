@@ -2,11 +2,13 @@ pydantic~=2.11.7
 python-dateutil
 docx2txt~=0.9
 PyPDF2~=3.0.1
-sentence-transformers~=5.0.0
-transformers~=4.54.1
+sentence-transformers~=4.1.0
+transformers~=4.51.3
 faiss-cpu~=1.11.0.post1
-numpy~=2.3.2
+numpy~=1.26.4
 protobuf
 pytz
 tiktoken
 torch~=2.7.1
+python-docx~=1.2.0
+sympy~=1.13.3

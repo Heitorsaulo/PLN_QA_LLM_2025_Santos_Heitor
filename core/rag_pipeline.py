@@ -1,3 +1,4 @@
+import torch
 from core.document_loader import DocumentLoader
 from core.embedding import EmbeddingModel
 from core.vector_store import FAISSVectorStore
@@ -8,21 +9,31 @@ import time
 
 class RAGPipeline:
     def __init__(self, embedding_model_name: str = None, llm_model_name: str = None, embedding_dim: int = 384):
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        print(self.device)
         self.embedding = EmbeddingModel(model_name=embedding_model_name or 'sentence-transformers/all-MiniLM-L6-v2')
         self.vector_store = FAISSVectorStore(embedding_dim)
-        self.llm = HuggingFaceLLM(model_name=llm_model_name or 'google/flan-t5-base')
+        self.llm = HuggingFaceLLM(model_name=llm_model_name or 'google/flan-t5-large', device = self.device)
         self.documents = []
 
     def add_documents(self, paths: List[str]):
         docs = DocumentLoader.load_documents(paths)
         chunks = []
         for doc in docs:
-            # Dividir documento em chunks menores
-            doc_chunks = self._split_document(doc)
-            for i, chunk_content in enumerate(doc_chunks):
-                chunk = Chunk(id=f"{doc.id}_chunk_{i}", document_id=doc.id, content=chunk_content)
+            if doc.metadata and doc.metadata.get("chunked", False):
+                chunk = Chunk(
+                    id=doc.id,
+                    document_id=doc.id.split("_chunk_")[0],
+                    content=doc.content
+                )
                 chunk.embedding = self.embedding.embed([chunk.content])[0]
                 chunks.append(chunk)
+            else:
+                doc_chunks = self._split_document(doc)
+                for i, chunk_content in enumerate(doc_chunks):
+                    chunk = Chunk(id=f"{doc.id}_chunk_{i}", document_id=doc.id, content=chunk_content)
+                    chunk.embedding = self.embedding.embed([chunk.content])[0]
+                    chunks.append(chunk)
         self.vector_store.add_chunks(chunks)
         self.documents.extend(docs)
         return docs
@@ -81,7 +92,7 @@ class RAGPipeline:
         # Limitar o contexto para não exceder o limite do modelo
         context_parts = []
         total_length = 0
-        max_context_length = 700  # Deixar espaço para pergunta e resposta
+        max_context_length = 512  # Deixar espaço para pergunta e resposta
 
         for r in retrieved:
             chunk_text = r.chunk.content
@@ -96,7 +107,7 @@ class RAGPipeline:
                 break
 
         context = '\n'.join(context_parts)
-        prompt = f"Context:\n{context}\n\nQuestion: {question}\nAnswer:"
+        prompt = f"Forneça uma resposta a partir das informações:\n <Contexto>\n{context}\n</Contexto>\n<Pergunta>{question}\n</Pergunta>"
         answer_text = self.llm.generate(prompt)
         end = time.time()
         return Answer(answer=answer_text, retrieved_documents=retrieved, processing_time=end-start)
