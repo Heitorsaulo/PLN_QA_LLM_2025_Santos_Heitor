@@ -1,0 +1,93 @@
+Modelo: HuggingFaceTB/SmolLM3-3B
+Pergunta: Qual tabela contém os dados sobre os profissionais vinculados às equipes de saúde e qual o nome do campo que identifica o CPF desses profissionais?
+Resposta: Forneça uma resposta a partir das informações:
+ <Contexto>
+Tabela:  ()
+
+Campo: IND_VINC
+Descrição: Indica a vinculação, o tipo e o sub tipo  de vínculo do Profissional com o Estabelecimento de Saúde
+Tipo: VARCHAR(06) / -
+---
+Campo: TP_SUS_NAO_SUS
+Descrição: Indica se o Profissional faz Atendimento ao SUS
+Tipo: VARCHAR(01) / -
+Domínios: S – Sim
+N - Não
+---
+Campo: DESCRICAO
+Descrição: NOT NULL
+Tipo: VARCHAR(50) / -
+Domínios: Palavras não permitidas
+---
+Campo: NU_CPF
+Descrição: NOT NULL
+Tipo: VARCHAR(11) / -
+Domínios: CPF do Profissional
+</Contexto>
+<Pergunta>Qual tabela contém os dados sobre os profissionais vinculados às equipes de saúde e qual o nome do campo que identifica o CPF desses profissionais?
+</Pergunta>
+
+Modelo: HuggingFaceTB/SmolLM3-3B
+Pergunta: Qual é o campo utilizado para indicar se um hospital possui contrato formalizado com o SUS e quais são os possíveis valores desse campo?
+Resposta: Forneça uma resposta a partir das informações:
+ <Contexto>
+Tabela:  ()
+
+Campo: D_HOSPSUS
+Descrição: Indica se o Serviço Atende Hospitalar SUS
+Tipo: CHAR(1) / -
+Domínios: 1 - Sim
+2 - Não
+---
+Campo: NOME_FANTA
+Descrição: Nome Fantasia da Cooperativa
+Tipo: VARCHAR(60) / -
+---
+Campo: COD_MUN _SEDE
+Descrição: Código do Município
+Tipo: VARCHAR(6) / -
+---
+Campo: COD_MUN _CONSORCIO
+Descrição: Código Nacional do Estabelecimento de Saúde
+Tipo: VARCHAR(6) / -
+Tabela:  ()
+
+Campo: CO_CNES_HOSP_GERAL_REF
+Descrição: CNES do Hospital Geral de Referência
+Tipo: VARCHAR(7) / VARCHAR(7...
+</Contexto>
+<Pergunta>Qual é o campo utilizado para indicar se um hospital possui contrato formalizado com o SUS e quais são os possíveis valores desse campo?
+</Pergunta>
+
+Modelo: HuggingFaceTB/SmolLM3-3B
+Pergunta: Na tabela de leitos hospitalares (LFCES002), qual campo armazena a quantidade de leitos disponíveis para o SUS e qual o nome da tabela relacionada à unidade?
+Resposta: Forneça uma resposta a partir das informações:
+ <Contexto>
+Tabela:  ()
+
+Campo: D_HOSPSUS
+Descrição: Indica se o Serviço Atende Hospitalar SUS
+Tipo: CHAR(1) / -
+Domínios: 1 - Sim
+2 - Não
+---
+Campo: NOME_FANTA
+Descrição: Nome Fantasia da Cooperativa
+Tipo: VARCHAR(60) / -
+---
+Campo: COD_MUN _SEDE
+Descrição: Código do Município
+Tipo: VARCHAR(6) / -
+---
+Campo: COD_MUN _CONSORCIO
+Descrição: Código Nacional do Estabelecimento de Saúde
+Tipo: VARCHAR(6) / -
+Tabela:  ()
+
+Campo: CO_CNES_HOSP_GERAL_REF
+Descrição: CNES do Hospital Geral de Referência
+Tipo: VARCHAR(7) / VARCHAR(7...
+</Contexto>
+<Pergunta>Na tabela de leitos hospitalares (LFCES002), qual campo armazena a quantidade de leitos disponíveis para o SUS e qual o nome da tabela relacionada à unidade?
+</Pergunta>
+
