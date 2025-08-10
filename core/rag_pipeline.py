@@ -8,12 +8,12 @@ from typing import List
 import time
 
 class RAGPipeline:
-    def __init__(self, embedding_model_name: str = None, llm_model_name: str = None, embedding_dim: int = 384):
+    def __init__(self, embedding_model_name: str = None, llm_model_name: str = None, embedding_dim: int = 384, pipeline_name: str = 'text2text-generation'):
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         print(self.device)
         self.embedding = EmbeddingModel(model_name=embedding_model_name or 'sentence-transformers/all-MiniLM-L6-v2')
         self.vector_store = FAISSVectorStore(embedding_dim)
-        self.llm = HuggingFaceLLM(model_name=llm_model_name or 'google/flan-t5-large', device = self.device)
+        self.llm = HuggingFaceLLM(model_name=llm_model_name or 'google/flan-t5-large', device=self.device)
         self.documents = []
 
     def add_documents(self, paths: List[str]):
@@ -48,14 +48,10 @@ class RAGPipeline:
         current_chunk = ""
 
         for paragraph in paragraphs:
-            # Se o parágrafo sozinho já é muito grande, dividi-lo
             if len(paragraph) > chunk_size:
-                # Salvar chunk atual se não estiver vazio
                 if current_chunk.strip():
                     chunks.append(current_chunk.strip())
                     current_chunk = ""
-
-                # Dividir parágrafo grande em pedaços menores
                 words = paragraph.split()
                 temp_chunk = ""
                 for word in words:
@@ -64,20 +60,15 @@ class RAGPipeline:
                         temp_chunk = word
                     else:
                         temp_chunk += " " + word if temp_chunk else word
-
                 if temp_chunk.strip():
                     chunks.append(temp_chunk.strip())
-
-            # Se adicionar este parágrafo não exceder o limite
             elif len(current_chunk + "\n\n" + paragraph) <= chunk_size:
                 current_chunk += "\n\n" + paragraph if current_chunk else paragraph
             else:
-                # Salvar chunk atual e começar novo
                 if current_chunk.strip():
                     chunks.append(current_chunk.strip())
                 current_chunk = paragraph
 
-        # Adicionar último chunk se não estiver vazio
         if current_chunk.strip():
             chunks.append(current_chunk.strip())
 
@@ -89,25 +80,50 @@ class RAGPipeline:
         results = self.vector_store.search(query_embedding, top_k=top_k)
         retrieved = [RetrievedDocument(chunk=chunk, relevance_score=score) for chunk, score in results]
 
-        # Limitar o contexto para não exceder o limite do modelo
+        # Reserva de tokens para resposta
+        reserved_output_tokens = 512
+        max_input_tokens = self.llm.max_model_input_tokens
+        allowed_input_tokens = max_input_tokens - reserved_output_tokens
+
+        # Tokens da pergunta (para reservar espaço)
+        question_tokens = len(self.llm.tokenizer(question)["input_ids"])
+
         context_parts = []
-        total_length = 0
-        max_context_length = 512  # Deixar espaço para pergunta e resposta
+        total_tokens = 0
 
         for r in retrieved:
             chunk_text = r.chunk.content
-            if total_length + len(chunk_text) <= max_context_length:
+            chunk_tokens = len(self.llm.tokenizer(chunk_text)["input_ids"])
+
+            if total_tokens + chunk_tokens + question_tokens <= allowed_input_tokens:
                 context_parts.append(chunk_text)
-                total_length += len(chunk_text)
+                total_tokens += chunk_tokens
             else:
-                # Adicionar parte do chunk se couber
-                remaining = max_context_length - total_length
-                if remaining > 50:  # Só adicionar se for significativo
-                    context_parts.append(chunk_text[:remaining] + "...")
+                remaining = allowed_input_tokens - total_tokens - question_tokens
+                if remaining > 20:
+                    enc = self.llm.tokenizer(chunk_text, truncation=True, max_length=remaining, return_tensors='pt')
+                    truncated_chunk = self.llm.tokenizer.decode(enc['input_ids'][0], skip_special_tokens=True)
+                    context_parts.append(truncated_chunk + "...")
                 break
 
-        context = '\n'.join(context_parts)
-        prompt = f"Forneça uma resposta a partir das informações:\n <Contexto>\n{context}\n</Contexto>\n<Pergunta>{question}\n</Pergunta>"
-        answer_text = self.llm.generate(prompt)
+        context = "\n\n".join(context_parts)
+        print(context)
+
+        prompt = f"""<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+                        Você é um assistente especializado em responder perguntas apenas com base nas informações do CONTEXTO fornecido.
+                        Siga estas regras:
+                        - Use exclusivamente as informações do CONTEXTO.
+                        - Não adicione informações externas nem invente detalhes.
+                        - Responda de forma clara, direta e completa.
+                        <|eot_id|><|start_header_id|>user<|end_header_id|>
+                        [CONTEXTO]
+                        {context}
+                        
+                        [PERGUNTA]
+                        {question}
+                        <|eot_id|><|start_header_id|>assistant<|end_header_id|>
+                """
+
+        answer_text = self.llm.generate(prompt, max_new_tokens=reserved_output_tokens)
         end = time.time()
         return Answer(answer=answer_text, retrieved_documents=retrieved, processing_time=end-start)

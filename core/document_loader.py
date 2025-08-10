@@ -14,7 +14,7 @@ class DocumentLoader:
         tabela_id = ""
         tabela_nome = ""
         dados_formatados = []
-        seen_lines = set()  # ← aqui vamos evitar duplicações
+        seen_lines = set()
 
         def processar_chunk_final():
             if dados_formatados:
@@ -46,21 +46,19 @@ class DocumentLoader:
                     tabela_id = row[0]
                     tabela_nome = row[1]
                     dados_formatados = []
-                    seen_lines = set()  # reset deduplicação para nova tabela
+                    seen_lines = set()
                     continue
 
                 if not headers_detected and "NOME DO" in row[0].upper():
                     headers_detected = True
-                    continue  # pular cabeçalho
+                    continue
 
                 if headers_detected:
                     row = [cell.strip() if cell else "-" for cell in row + [""] * (10 - len(row))]
 
-                    # pular campos irrelevantes
                     if "sem uso" in row[8].lower() or (not row[8] or row[8] == "-"):
                         continue
 
-                    # gerar string semanticamente útil
                     nome_logico = row[0] if row[0] != "-" else None
                     nome_fisico = row[3] if row[3] != "-" else None
                     tipo_logico = row[1]
@@ -68,7 +66,6 @@ class DocumentLoader:
                     descricao = row[8]
                     dominios = row[9] if row[9] != "-" else None
 
-                    # montar texto base
                     linhas = []
 
                     if nome_logico and nome_fisico and nome_logico != nome_fisico:
@@ -88,12 +85,10 @@ class DocumentLoader:
 
                     texto_formatado = "\n".join(linhas)
 
-                    # evitar duplicação exata
                     if texto_formatado not in seen_lines:
                         dados_formatados.append(texto_formatado)
                         seen_lines.add(texto_formatado)
 
-        # Finalizar última tabela se restou algo
         processar_chunk_final()
 
         return all_documents
