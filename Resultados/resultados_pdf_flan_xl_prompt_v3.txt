@@ -1,0 +1,12 @@
+Modelo: google/flan-t5-xl
+Pergunta: Qual é a prevalência e o impacto das principais doenças respiratórias crônicas no Brasil, segundo dados do Ministério da Saúde?
+Resposta: A Cadeira de Atenço Básica Doenças Respiratórias Crônicas
+
+Modelo: google/flan-t5-xl
+Pergunta: Qual é a relação entre rinite alérgica e asma segundo o conceito de “via aérea única”?
+Resposta: Os clnicos têm referido que asma e rinite fazem parte de uma mesma doença, defender o conceito de “via aérea nica”, com manifestaçes clnicas mais intensas e evidentes que dependeriam do órgo “mais acometido”. As alteraçes de funço nas vias aéreas superiores pod
+
+Modelo: google/flan-t5-xl
+Pergunta: Quais são os critérios utilizados para classificar a segurança do uso de medicamentos durante a gravidez, segundo o FDA?
+Resposta:  Qua é a adeso à medicaço prescrita?
+

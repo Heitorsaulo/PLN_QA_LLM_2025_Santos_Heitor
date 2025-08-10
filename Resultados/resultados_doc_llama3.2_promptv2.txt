@@ -1,0 +1,398 @@
+Modelo: meta-llama/Llama-3.2-3B-Instruct
+Pergunta: Qual tabela contém os dados sobre os profissionais vinculados às equipes de saúde e qual o nome do campo que identifica o CPF desses profissionais?
+Resposta: system
+                        Você é um assistente especializado em responder perguntas apenas com base nas informações do CONTEXTO fornecido.
+                        Siga estas regras:
+                        - Use exclusivamente as informações do CONTEXTO.
+                        - Não adicione informações externas nem invente detalhes.
+                        - Responda de forma clara, direta e completa.
+                        user
+                        [CONTEXTO]
+                        Tabela:  ()
+
+Campo: IND_VINC
+Descrição: Indica a vinculação, o tipo e o sub tipo  de vínculo do Profissional com o Estabelecimento de Saúde
+Tipo: VARCHAR(06) / -
+---
+Campo: TP_SUS_NAO_SUS
+Descrição: Indica se o Profissional faz Atendimento ao SUS
+Tipo: VARCHAR(01) / -
+Domínios: S – Sim
+N - Não
+---
+Campo: DESCRICAO
+Descrição: NOT NULL
+Tipo: VARCHAR(50) / -
+Domínios: Palavras não permitidas
+---
+Campo: NU_CPF
+Descrição: NOT NULL
+Tipo: VARCHAR(11) / -
+Domínios: CPF do Profissional
+
+Tabela:  ()
+
+Campo: TP_SUS_NAO_SUS
+Descrição: Indica se o Profissional faz Atendimento ao SUS
+Tipo: CHAR(1) / -
+Domínios: S – Sim
+N - Não
+---
+Campo: IND_VINCULACAO
+Descrição: Indica a vinculação, o tipo e o sub tipo  de vínculo do Profissional com o Estabelecimento de Saúde
+Tipo: VARCHAR(6) / -
+---
+Campo: NO_PROFISSIONAL
+Descrição: Nome do Profissional - Coordenador do CAPS de Referência
+Tipo: VARCHAR(60) / -
+---
+Campo: CO_CPF
+Descrição: CPF do  Profissional - Coordenador do CAPS de Referência
+Tipo: VARCHAR(11) / -
+
+Tabela:  ()
+
+Campo: IND_NACIO
+Descrição: Indica a Nacionalidade do Profissional
+Tipo: CHAR(1) / -
+Domínios: 1 - Brasileira
+2 - Estrangeira
+3 - Naturalizada
+---
+Campo: NOME_CARTO
+Descrição: Nome do Cartório Emissor da Certidão
+Tipo: VARCHAR(60) / -
+---
+Campo: COD_BANCO
+Descrição: Código do Banco do Profissional
+Tipo: VARCHAR(3) / -
+---
+Campo: NUM_AGENC
+Descrição: Número da Agência Bancária
+Tipo: VARCHAR(5) / -
+
+Tabela:  ()
+
+Campo: ST_PARCERIA_ONG
+Descrição: Informa se possui parceira com ONG
+Tipo: CHAR(1) / CHAR(1)
+Domínios: S – Sim
+N - Não
+---
+Campo: NU_VAGAS
+Descrição: Número de vagas da Unidade de Acolhimento
+Tipo: INTEGER / NUMBER(4)
+---
+Campo: CO_PROFISSIONAL
+Descrição: Código do Profissional de Saúde
+Tipo: VARCHAR(16) / VARCHAR2(16)
+---
+Campo: CO_CBO
+Descrição: Código Brasileiro de Ocupação
+Tipo: VARCHAR(6) / VARCHAR2(6)
+
+Tabela:  ()
+
+Campo: CO_PROF_SUS_PRECEPTOR
+Descrição: Código do profissional Preceptor na equipe
+Tipo: VARCHAR(16) / VARCHAR2(16)
+---
+Campo: CO_CNES_PRECEPTOR
+Descrição: CNES no qual o Profissional está vinculado como Preceptor
+Tipo: VARCHAR(7) / VARCHAR2(7)
+---
+Campo: CO_EQUIPE
+Descrição: Código da Equipe (Identificador Nacional de Equipe - INE)
+Tipo: VARCHAR(10) / VARCHAR(10)
+---
+Campo: USUARIO → NO_USUARIO
+Descrição: Último Usuário que atualizou o Registro
+Tipo: VARCHAR(60) / VARCHAR2(60)
+                        
+                        [PERGUNTA]
+                        Qual tabela contém os dados sobre os profissionais vinculados às equipes de saúde e qual o nome do campo que identifica o CPF desses profissionais?
+                        assistant
+                 Tabela:  ()
+Campo: CO_PROF_SUS_PRECEPTOR
+Descrição: Código do profissional Preceptor na equipe
+Tipo: VARCHAR(16) / VARCHAR2(16)
+Campo: CO_CNES_PRECEPTOR
+Descrição: CNES no qual o Profissional está vinculado como Preceptor
+Tipo: VARCHAR(7) / VARCHAR2(7)
+Campo: CO_EQUIPE
+Descrição: Código da Equipe (Identificador Nacional de Equipe - INE)
+Tipo: VARCHAR(10) / VARCHAR(10)
+Campo: CO_PROF_SUS_PRECEPTOR
+Descrição: Código do profissional Preceptor na equipe
+Tipo: VARCHAR(16) / VARCHAR2(16)
+Campo: CO_CNES_PRECEPTOR
+Descrição: CNES no qual o Profissional está vinculado como Preceptor
+Tipo: VARCHAR(7) / VARCHAR2(7)
+Campo: CO_EQUIPE
+Descrição: Código da Equipe (Identificador Nacional de Equipe - INE)
+Tipo: VARCHAR(10) / VARCHAR(10)
+Campo: NO_USUARIO
+Descrição: Último Usuário que atualizou o Registro
+Tipo: VARCHAR(60) / VARCHAR2(60)
+Campo: NU_CPF
+Descrição: NOT NULL
+Tipo: VARCHAR(11) / -
+Domínios: CPF do Profissional
+Campo: IND_VINC
+Descrição: Indica a vinculação, o tipo e o sub tipo  de vínculo do Profissional com o Estabelecimento de Saúde
+Tipo: VARCHAR(06) / -
+---
+Campo: TP_SUS_NAO_SUS
+Descrição: Indica se o Profissional faz Atendimento ao SUS
+Tipo: CHAR(1) / -
+Domínios: S – Sim
+N - Não
+---
+Campo: DESCRICAO
+Descrição: NOT NULL
+Tipo: VARCHAR(50) / -
+Domínios: Palavras não permitidas
+---
+Campo: IND_VINCULACAO
+Descrição: Indica a vinculação, o tipo e o sub tipo  de vínculo do Profissional com o Estabelecimento de Saúde
+Tipo: VARCHAR(6) / -
+---
+Campo: NO_PROFISSIONAL
+Descrição: Nome do Profissional - Coordenador do CAPS de Referência
+Tipo: VARCHAR(60) / -
+---
+Campo: CO_CPF
+Descrição: CPF do  Profissional - Co
+
+Modelo: meta-llama/Llama-3.2-3B-Instruct
+Pergunta: Qual é o campo utilizado para indicar se um hospital possui contrato formalizado com o SUS e quais são os possíveis valores desse campo?
+Resposta: system
+                        Você é um assistente especializado em responder perguntas apenas com base nas informações do CONTEXTO fornecido.
+                        Siga estas regras:
+                        - Use exclusivamente as informações do CONTEXTO.
+                        - Não adicione informações externas nem invente detalhes.
+                        - Responda de forma clara, direta e completa.
+                        user
+                        [CONTEXTO]
+                        Tabela:  ()
+
+Campo: D_HOSPSUS
+Descrição: Indica se o Serviço Atende Hospitalar SUS
+Tipo: CHAR(1) / -
+Domínios: 1 - Sim
+2 - Não
+---
+Campo: NOME_FANTA
+Descrição: Nome Fantasia da Cooperativa
+Tipo: VARCHAR(60) / -
+---
+Campo: COD_MUN _SEDE
+Descrição: Código do Município
+Tipo: VARCHAR(6) / -
+---
+Campo: COD_MUN _CONSORCIO
+Descrição: Código Nacional do Estabelecimento de Saúde
+Tipo: VARCHAR(6) / -
+
+Tabela:  ()
+
+Campo: CO_CNES_HOSP_GERAL_REF
+Descrição: CNES do Hospital Geral de Referência
+Tipo: VARCHAR(7) / VARCHAR(7)
+---
+Campo: ST_UNIDADE_REGIONAL
+Descrição: Indica se o Regime Residencial possui Unidade Regional
+Tipo: CHAR(1) / CHAR(1)
+Domínios: S - Sim
+N - Não
+---
+Campo: CO_AVALIACAO
+Descrição: Código da Avaliação
+Tipo: VARCHAR(2) / VARCHAR2(2)
+---
+Campo: CO_CLASSIFICACAO
+Descrição: Código da Classificação
+Tipo: VARCHAR(2) / VARCHAR2(2)
+
+Tabela:  ()
+
+Campo: D_HOSP → CO_HOSPITALAR
+Descrição: Indica se o Serviço Atende Hospitalar Não SUS
+Tipo: CHAR(1) / CHAR(1)
+Domínios: 1 - Sim
+2 - Não
+---
+Campo: D_HOSPSUS → CO_HOSPITALAR_SUS
+Descrição: Indica se o Serviço Atende Hospitalar SUS
+Tipo: CHAR(1) / CHAR(1)
+Domínios: 1 - Sim
+2 - Não
+---
+Campo: COD_ENDCOMPL → CO_END_COMPL
+Descrição: Código do Endereço Complementar
+Tipo: VARCHAR(5) / VARCHAR2(5)
+---
+Campo (físico): DT_ATUALIZACAO_ORIGEM
+Descrição: Data da primeira entrada no Banco de Produção Federal
+Tipo: - / DATE
+
+Tabela:  ()
+
+Campo: FL_ADESAO_FILANTROP → ST_ADESAO_ FILANTROP
+Descrição: Indica se o hospital fez adesão ao Programa de Reestruturação de Hospital Filantrópico
+Tipo: CHAR(1) / CHAR(1)
+Domínios: 1 - Sim
+2 - Não
+---
+Campo: CD_MOTIVO_DESAB → CO_MOTIVO_DESAB
+Descrição: Código do Motivo de Desativação do Estabelecimento
+Tipo: VARCHAR(2) / VARCHAR2(2)
+---
+Campo: NO_URL
+Descrição: Endereço URL
+Tipo: VARCHAR(60) / VARCHAR2(60)
+---
+Campo: NU_LATITUDE
+Descrição: Latitude do Endereço do Estabelecimento
+Tipo: VARCHAR(30) / VARCHAR2(30)
+
+Tabela:  ()
+
+Campo: IND_VINCULACAO
+Descrição: Indica a vinculação, o tipo e o sub tipo  de vinculo do Profissional com o Estabelecimento de Saúde
+Tipo: VARCHAR(6) / VARCHAR(6)
+---
+Campo: DT_ATIVACAO
+Descrição: Data de Ativação
+Tipo: DATE / DATE
+---
+Campo: DT_DESATIVACAO
+Descrição: Data de Desativação
+Tipo: DATE / DATE
+---
+Campo: CO_CNES_REFERENCIA
+Descrição: CNES do Hospital Geral de Referência
+Tipo: VARCHAR(7) / VARCHAR(7)
+                        
+                        [PERGUNTA]
+                        Qual é o campo utilizado para indicar se um hospital possui contrato formalizado com o SUS e quais são os possíveis valores desse campo?
+                        assistant
+                 O campo utilizado para indicar se um hospital possui contrato formalizado com o SUS é D_HOSPSUS. Os possíveis valores desse campo são 1 - Sim e 2 - Não.
+
+Modelo: meta-llama/Llama-3.2-3B-Instruct
+Pergunta: Na tabela de leitos hospitalares (LFCES002), qual campo armazena a quantidade de leitos disponíveis para o SUS e qual o nome da tabela relacionada à unidade?
+Resposta: system
+                        Você é um assistente especializado em responder perguntas apenas com base nas informações do CONTEXTO fornecido.
+                        Siga estas regras:
+                        - Use exclusivamente as informações do CONTEXTO.
+                        - Não adicione informações externas nem invente detalhes.
+                        - Responda de forma clara, direta e completa.
+                        user
+                        [CONTEXTO]
+                        Tabela:  ()
+
+Campo: D_HOSPSUS
+Descrição: Indica se o Serviço Atende Hospitalar SUS
+Tipo: CHAR(1) / -
+Domínios: 1 - Sim
+2 - Não
+---
+Campo: NOME_FANTA
+Descrição: Nome Fantasia da Cooperativa
+Tipo: VARCHAR(60) / -
+---
+Campo: COD_MUN _SEDE
+Descrição: Código do Município
+Tipo: VARCHAR(6) / -
+---
+Campo: COD_MUN _CONSORCIO
+Descrição: Código Nacional do Estabelecimento de Saúde
+Tipo: VARCHAR(6) / -
+
+Tabela:  ()
+
+Campo: CO_CNES_HOSP_GERAL_REF
+Descrição: CNES do Hospital Geral de Referência
+Tipo: VARCHAR(7) / VARCHAR(7)
+---
+Campo: ST_UNIDADE_REGIONAL
+Descrição: Indica se o Regime Residencial possui Unidade Regional
+Tipo: CHAR(1) / CHAR(1)
+Domínios: S - Sim
+N - Não
+---
+Campo: CO_AVALIACAO
+Descrição: Código da Avaliação
+Tipo: VARCHAR(2) / VARCHAR2(2)
+---
+Campo: CO_CLASSIFICACAO
+Descrição: Código da Classificação
+Tipo: VARCHAR(2) / VARCHAR2(2)
+
+Tabela:  ()
+
+Campo: D_HOSP → CO_HOSPITALAR
+Descrição: Indica se o Serviço Atende Hospitalar Não SUS
+Tipo: CHAR(1) / CHAR(1)
+Domínios: 1 - Sim
+2 - Não
+---
+Campo: D_HOSPSUS → CO_HOSPITALAR_SUS
+Descrição: Indica se o Serviço Atende Hospitalar SUS
+Tipo: CHAR(1) / CHAR(1)
+Domínios: 1 - Sim
+2 - Não
+---
+Campo: COD_ENDCOMPL → CO_END_COMPL
+Descrição: Código do Endereço Complementar
+Tipo: VARCHAR(5) / VARCHAR2(5)
+---
+Campo (físico): DT_ATUALIZACAO_ORIGEM
+Descrição: Data da primeira entrada no Banco de Produção Federal
+Tipo: - / DATE
+
+Tabela:  ()
+
+Campo: FL_ADESAO_FILANTROP → ST_ADESAO_ FILANTROP
+Descrição: Indica se o hospital fez adesão ao Programa de Reestruturação de Hospital Filantrópico
+Tipo: CHAR(1) / CHAR(1)
+Domínios: 1 - Sim
+2 - Não
+---
+Campo: CD_MOTIVO_DESAB → CO_MOTIVO_DESAB
+Descrição: Código do Motivo de Desativação do Estabelecimento
+Tipo: VARCHAR(2) / VARCHAR2(2)
+---
+Campo: NO_URL
+Descrição: Endereço URL
+Tipo: VARCHAR(60) / VARCHAR2(60)
+---
+Campo: NU_LATITUDE
+Descrição: Latitude do Endereço do Estabelecimento
+Tipo: VARCHAR(30) / VARCHAR2(30)
+
+Tabela:  ()
+
+Campo: IND_VINCULACAO
+Descrição: Indica a vinculação, o tipo e o sub tipo  de vinculo do Profissional com o Estabelecimento de Saúde
+Tipo: VARCHAR(6) / VARCHAR(6)
+---
+Campo: DT_ATIVACAO
+Descrição: Data de Ativação
+Tipo: DATE / DATE
+---
+Campo: DT_DESATIVACAO
+Descrição: Data de Desativação
+Tipo: DATE / DATE
+---
+Campo: CO_CNES_REFERENCIA
+Descrição: CNES do Hospital Geral de Referência
+Tipo: VARCHAR(7) / VARCHAR(7)
+                        
+                        [PERGUNTA]
+                        Na tabela de leitos hospitalares (LFCES002), qual campo armazena a quantidade de leitos disponíveis para o SUS e qual o nome da tabela relacionada à unidade?
+                        assistant
+                 O campo que armazena a quantidade de leitos disponíveis para o SUS é D_HOSPSUS. 
+
+A tabela relacionada à unidade é a Tabela: ( )
+
