@@ -29,6 +29,16 @@ O objetivo deste tutorial é apresentar uma comparação de desempenho de três 
 ```bash
 pip install -r requirements.txt
 ```
+## Fluxo da Aplicação
+
+1. Carregamento e Pré-processamento dos documentos
+2. Divisão do texto em chunks
+3. Geração dos embeddings dos chunks
+4. Armazenamento e indexação dos embeddings no banco vetorial
+5. Geração do embedding da pergunta
+6. Busca dos chunks mais relevantes
+7. Montagem do contexto com os chunks recuperados
+8. Geração da Resposta pelo LLM
 
 ## Estrutura do Projeto
 
