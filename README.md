@@ -1,6 +1,21 @@
 # RAG Pipeline com HuggingFace
 
-Sistema de perguntas e respostas baseado em documentos usando RAG (Retrieval-Augmented Generation).
+Sistema de perguntas e respostas baseado em documentos usando RAG (Retrieval-Augmented Generation). 
+
+**Participantes da equipe:**
+
+- Heitor Saulo Dantas Santos
+- Itor Carlos Souza Queiroz
+- Lanna Luara Novaes Silva
+- Lavínia Louise Rosa Santos
+- Rômulo Menezes De Santana
+
+## Modelos utilizados
+
+O objetivo deste tutorial é apresentar uma comparação de desempenho de três modelos do Hugging Face ao executar a tarefa de Question Answer (QA). Os modelos utilizados foram:
+- [HuggingFaceTB/SmolLM3-3B](https://huggingface.co/HuggingFaceTB/SmolLM3-3B)
+- [google/flan-t5-xl](https://huggingface.co/google/flan-t5-x)
+- [meta-llama/Llama-3.2-3B-Instruct](https://huggingface.co/meta-llama/Llama-3.2-3B-Instruc)
 
 ## Funcionalidades
 
