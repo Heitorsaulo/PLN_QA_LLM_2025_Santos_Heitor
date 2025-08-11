@@ -84,8 +84,8 @@ Resposta: [Baseada no conteúdo dos documentos carregados]
 
 ## Dependências Principais
 
-- transformers
-- sentence-transformers
-- faiss-cpu
+- Transformers
+- Sentence-transformers
+- Faiss-cpu
 - PyPDF2
 - torch
